@@ -1,22 +1,13 @@
 #!/bin/bash
 
-#navigate into our "ubuntu" directory 
-cd /home/ubuntu
+#give permission for everything in the express-demo-app directory
+sudo chmod -R 777 /home/ec2-user/express-demo-app
 
-#change ownership of app directory "express-demo-app" to ubuntu
-sudo chown -Rf ubuntu:ubuntu express-demo-app
-
-#navigate into our "express-demo-app" directory
-cd /home/ubuntu/express-demo-app
-
-#remove "node_modules"
-rm -rf node_modules
-
-#remove "package-lock.json"
-rm package-lock.json
+#navigate into our working directory where we have all our github files
+cd /home/ec2-user/express-demo-app
 
 #install node modules
 npm install
 
-#run app
+#start our node app in the background
 npm start
