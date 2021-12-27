@@ -1,18 +1,22 @@
 #!/bin/bash
 
-#give permission for everything in the express-demo-app directory
-sudo chmod -R 777 /home/ec2-user/express-demo-app
+#navigate into our "ubuntu" directory 
+cd /home/ubuntu
 
-#navigate into our working directory where we have all our github files
-cd /home/ec2-user/express-demo-app
+#change ownership of app directory "express-demo-app" to ubuntu
+sudo chown -Rf ubuntu:ubuntu express-demo-app
 
-#add npm and node to path
-export NVM_DIR="$HOME/.nvm"	
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # loads nvm	
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # loads nvm bash_completion (node is in path now)
+#navigate into our "express-demo-app" directory
+cd /home/ubuntu/express-demo-app
+
+#remove "node_modules"
+rm -rf node_modules
+
+#remove "package-lock.json"
+rm package-lock.json
 
 #install node modules
 npm install
 
-#start our node app in the background
-npm start > app.out.log 2> app.err.log < /dev/null & 
+#run app
+npm start
